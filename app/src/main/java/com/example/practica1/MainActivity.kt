@@ -2,75 +2,34 @@ package com.example.practica1
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.practica1.ui.theme.Practica1Theme
+import android.graphics.Color
+import android.widget.Button
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Practica1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        setContentView(R.layout.activity_main)
+
+        val btn1: Button = findViewById(R.id.btn1)
+        val btn2: Button = findViewById(R.id.btn2)
+        val btn3: Button = findViewById(R.id.btn3) // ✅ Correcta
+        val btn4: Button = findViewById(R.id.btn4)
+
+        val botones = listOf(btn1, btn2, btn3, btn4)
+        val correcta = btn3
+
+        botones.forEach { boton ->
+            boton.setOnClickListener {
+                if (boton == correcta) {
+                    boton.setBackgroundColor(Color.parseColor("#4CAF50")) // Verde
+                } else {
+                    boton.setBackgroundColor(Color.parseColor("#F44336")) // Rojo
                 }
+
+                // Desactiva todos los botones después de elegir
+                botones.forEach { it.isEnabled = false }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Composable
-fun WaterCounter(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.padding(16.dp)) {
-        var count by remember { mutableStateOf(0) }
-
-        if (count > 0) {
-            Text("You've had $count glasses.")
-        }
-
-        Button(
-            onClick = { count++ },
-            enabled = count < 10, // Se deshabilita cuando count == 10
-            modifier = Modifier.padding(top = 8.dp)
-        ) {
-            Text("Add one")
-        }
-    }
-}
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Practica1Theme {
-        Greeting("Android")
-        WaterCounter()
     }
 }
