@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/MainMenuRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/MainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350px"
+        android:text="VIDEOGAME TITLE" />
+
+    <Button
+        android:id="@+id/StartBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PLAY" />
+
+    <Button
+        android:id="@+id/ScoresBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SCORES" />
+
+    <Button
+        android:id="@+id/SettingsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SETTINGS" />
+</LinearLayout>
