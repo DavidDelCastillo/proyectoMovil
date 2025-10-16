@@ -38,7 +38,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1️⃣ Inicializa las vistas
         questionText = findViewById(R.id.questionText)
         questionNumber = findViewById(R.id.questionNumber)
 
@@ -56,7 +55,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        // 2️⃣ Carga el JSON
         questions = try {
             loadQuestionsFromJson().shuffled().take(5)
         } catch (e: Exception) {
@@ -64,7 +62,6 @@ class MainActivity : ComponentActivity() {
             listOf()
         }
 
-        // 3️⃣ Muestra la primera pregunta (solo si hay preguntas)
         if (questions.isNotEmpty()) {
             showQuestion()
         } else {
