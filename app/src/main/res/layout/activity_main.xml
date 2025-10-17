@@ -2,53 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#FFFFFF"
     android:gravity="center"
-    android:padding="24dp"
-    android:background="#FFFFFF">
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <TextView
         android:id="@+id/questionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="Pregunta 1"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/questionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="¿Cuál es la capital de Francia?"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Opción 1"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:text="Opción 1" />
 
     <Button
         android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Opción 2"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:text="Opción 2" />
 
     <Button
         android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Opción 3"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:text="Opción 3" />
 
     <Button
         android:id="@+id/btn4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Opción 4" />
+
+    <Button
+        android:id="@+id/btn0"
+        android:layout_width="244dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="50dp"
+        android:rotationX="0"
+        android:text="Siguiente" />
 
 </LinearLayout>

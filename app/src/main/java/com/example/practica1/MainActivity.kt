@@ -29,11 +29,13 @@ class MainActivity : ComponentActivity() {
     private lateinit var questionText: TextView
     private lateinit var questionNumber: TextView
     private lateinit var buttons: List<Button>
+    private lateinit var btnNext: Button
+
 
     private var currentQuestionIndex = 0
     private var questions: List<Question> = listOf()
-
     private var answered = false
+    private var quizFinished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,7 @@ class MainActivity : ComponentActivity() {
         questionText = findViewById(R.id.questionText)
         questionNumber = findViewById(R.id.questionNumber)
 
+        btnNext = findViewById(R.id.btn0)
         val btn1: Button = findViewById(R.id.btn1)
         val btn2: Button = findViewById(R.id.btn2)
         val btn3: Button = findViewById(R.id.btn3)
@@ -50,12 +53,26 @@ class MainActivity : ComponentActivity() {
 
         buttons.forEachIndexed { index, button ->
             button.setOnClickListener {
-                if (!answered) {
+                if (!answered && !quizFinished) {
                     checkAnswer(index)
                 }
             }
         }
 
+        btnNext.setOnClickListener {
+            if (!quizFinished) {
+                if (answered) {
+                    goToNextQuestion()
+                }
+            } else {
+                restartQuiz()
+            }
+        }
+
+        loadQuiz()
+    }
+
+    private fun loadQuiz() {
         questions = try {
             loadQuestionsFromJson().shuffled().take(5)
         } catch (e: Exception) {
@@ -63,8 +80,12 @@ class MainActivity : ComponentActivity() {
             listOf()
         }
 
+        currentQuestionIndex = 0
+        quizFinished = false
+
         if (questions.isNotEmpty()) {
             showQuestion()
+            btnNext.text = "Siguiente"
         } else {
             questionText.text = "No se pudieron cargar las preguntas."
         }
@@ -97,22 +118,28 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_SPACE && answered) {
-            if (currentQuestionIndex < questions.size - 1) {
-                currentQuestionIndex++
-                showQuestion()
-            } else {
-                questionText.text = "¡Has terminado el quiz! 🎉"
-                questionNumber.text = ""
-                buttons.forEach {
-                    it.text = ""
-                    it.isEnabled = false
-                    it.setBackgroundColor(Color.WHITE)
-                }
-            }
-            return true
+    private fun goToNextQuestion() {
+        if (currentQuestionIndex < questions.size - 1) {
+            currentQuestionIndex++
+            showQuestion()
+        } else {
+            finishQuiz()
         }
-        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun finishQuiz() {
+        questionText.text = "¡Has terminado el quiz! 🎉"
+        questionNumber.text = ""
+        buttons.forEach {
+            it.text = ""
+            it.isEnabled = false
+            it.setBackgroundColor(Color.WHITE)
+        }
+        btnNext.text = "Reiniciar"
+        quizFinished = true
+    }
+
+    private fun restartQuiz() {
+        loadQuiz()
     }
 }
