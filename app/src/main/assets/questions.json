@@ -7,12 +7,14 @@
   {
     "text": "¿A qué saga de videojuegos se asocia este símbolo? (Trifuerza)",
     "options": ["Kingdom Hearts", "The legend of Zelda", "God of War", "Metroid"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "image": "Trifuerza.png"
   },
   {
     "text": "Esta banda sonora pertenece a: [menú Minecraft]",
     "options": ["Minecraft", "Terraria", "Final Fantasy VII", "Pokémon amarillo"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "audio": "minecraft.mp3"
   },
   {
     "text": "¿Qué personajes acompañan a Sora en Kingdom Hearts?",
@@ -33,20 +35,5 @@
     "text": "¿Dónde se desarrollan los acontecimientos de Resident Evil 2?",
     "options": ["Racoon City", "La Mansión Spencer", "Castillo Dimitrescu", "Residencia Baker"],
     "correctIndex": 0
-  },
-  {
-    "text": "¿Qué país tiene la bandera con un círculo rojo sobre fondo blanco?",
-    "options": ["Japón", "Canadá", "Suiza", "Turquía"],
-    "correctIndex": 0
-  },
-  {
-    "text": "¿Cuál es el símbolo químico del oro?",
-    "options": ["Au", "Ag", "Gd", "Pb"],
-    "correctIndex": 0
-  },
-  {
-    "text": "¿En qué continente se encuentra Egipto?",
-    "options": ["Asia", "África", "Europa", "Oceanía"],
-    "correctIndex": 1
   }
 ]

@@ -9,24 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.compose.ui.graphics.findFirstRoot
-
-//Variables
-
-private lateinit var startBtn : Button;
-private lateinit var scoresBtn : Button;
-private lateinit var settingsBtn : Button;
+import android.content.Intent
 
 
 //Metodos
 class MainMenu : ComponentActivity(){
 
-    var scene1: Scene? = null
+    private lateinit var startBtn : Button;
+    private lateinit var scoresBtn : Button;
+    private lateinit var settingsBtn : Button;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_menu)
 
-        //scene1 = Scene.getSceneForLayout(MainMenuRoot, R.layout.main_menu, this);
+        startBtn = findViewById(R.id.StartBtn)
+        scoresBtn = findViewById(R.id.ScoresBtn)
+        settingsBtn = findViewById(R.id.SettingsBtn)
 
         startBtn.setOnClickListener{StartButtonPressed();}
         scoresBtn.setOnClickListener{ScoresButtonPressed();}
@@ -34,11 +33,18 @@ class MainMenu : ComponentActivity(){
     }
 
     private fun StartButtonPressed(){
-        //TransitionManager.go(scene1)
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
-    private fun ScoresButtonPressed(){}
+    private fun ScoresButtonPressed(){
+        val intent = Intent(this, ScoresActivity::class.java)
+        startActivity(intent)
+    }
 
-    private fun SettingsButtonPressed(){}
+    private fun SettingsButtonPressed(){
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.practica1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import android.view.KeyEvent
@@ -10,11 +11,17 @@ import android.transition.Scene
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.InputStreamReader
+import android.media.MediaPlayer
+import android.widget.ImageView
+import android.graphics.BitmapFactory
+import android.view.View
 
 data class Question(
     val text: String,
     val options: List<String>,
-    val correctIndex: Int
+    val correctIndex: Int,
+    val image: String? = null,
+    val audio: String? = null
 )
 
 
@@ -26,6 +33,10 @@ class MainActivity : ComponentActivity() {
         val questionType = object : TypeToken<List<Question>>() {}.type
         return Gson().fromJson(reader, questionType)
     }
+
+    private lateinit var questionImage: ImageView
+    private var mediaPlayer: MediaPlayer? = null
+
     private lateinit var questionText: TextView
     private lateinit var questionNumber: TextView
     private lateinit var buttons: List<Button>
@@ -40,6 +51,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        questionImage = findViewById(R.id.questionImage)
 
         questionText = findViewById(R.id.questionText)
         questionNumber = findViewById(R.id.questionNumber)
@@ -65,7 +78,8 @@ class MainActivity : ComponentActivity() {
                     goToNextQuestion()
                 }
             } else {
-                restartQuiz()
+                val intent = Intent(this, MainMenu::class.java)
+                startActivity(intent)
             }
         }
 
@@ -97,11 +111,47 @@ class MainActivity : ComponentActivity() {
         questionNumber.text = "Pregunta ${currentQuestionIndex + 1}"
         answered = false
 
+        // --- IMAGEN ---
+        if (q.image != null) {
+            try {
+                val inputStream = assets.open("MultimediaAssets/${q.image}")
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                questionImage.setImageBitmap(bitmap)
+                questionImage.visibility = View.VISIBLE
+            } catch (e: Exception) {
+                e.printStackTrace()
+                questionImage.visibility = View.GONE
+            }
+        } else {
+            questionImage.visibility = View.GONE
+        }
+
+        // --- AUDIO ---
+        stopAudio()
+
+        if (!q.audio.isNullOrEmpty()) {
+            try {
+                val afd = assets.openFd("MultimediaAssets/${q.audio}")
+                mediaPlayer = MediaPlayer()
+                mediaPlayer?.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                mediaPlayer?.prepare()
+                mediaPlayer?.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
         buttons.forEachIndexed { index, button ->
             button.text = q.options[index]
             button.setBackgroundColor(Color.parseColor("#E0E0E0"))
             button.isEnabled = true
         }
+    }
+
+    private fun stopAudio() {
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     private fun checkAnswer(selectedIndex: Int) {
@@ -135,8 +185,11 @@ class MainActivity : ComponentActivity() {
             it.isEnabled = false
             it.setBackgroundColor(Color.WHITE)
         }
-        btnNext.text = "Reiniciar"
+        btnNext.text = "Volver al menú"
         quizFinished = true
+        stopAudio()
+        questionImage.setImageDrawable(null)
+        questionImage.visibility = View.GONE
     }
 
     private fun restartQuiz() {
