@@ -2,97 +2,115 @@
   {
     "text": "¿Cómo se llama el protagonista del primer juego de pokemon?",
     "options": ["Brock", "Ash", "Blue", "Red"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "facil"
   },
   {
     "text": "¿A qué saga de videojuegos se asocia este símbolo?",
     "options": ["Kingdom Hearts", "The legend of Zelda", "God of War", "Metroid"],
     "correctIndex": 1,
-    "image": "Trifuerza.png"
+    "image": "Trifuerza.png",
+    "difficulty": "facil"
   },
   {
     "text": "Esta banda sonora pertenece a:",
     "options": ["Minecraft", "Terraria", "Final Fantasy VII", "Pokémon amarillo"],
     "correctIndex": 0,
-    "audio": "minecraft.mp3"
+    "audio": "minecraft.mp3",
+    "difficulty": "facil"
   },
   {
     "text": "¿Qué personajes acompañan a Sora en Kingdom Hearts?",
     "options": ["Mickey y Pluto", "Yuffy y Squall", "Donald y Goofy", "Donald y Mickey"],
-    "correctIndex": 2
+    "correctIndex": 2,
+    "difficulty": "facil"
   },
   {
     "text": "¿¿Cuál es el boss final del videojuego: Minecraft?",
     "options": ["The Wither", "Warden", "Elder Guardian", "Ender Dragon"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cómo se llama el/la protagonista de The Legend of Zelda: Tears of the Kingdom?",
     "options": ["Link", "Zelda", "Rock", "Becca"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿Dónde se desarrollan los acontecimientos de Resident Evil 2?",
     "options": ["Racoon City", "La Mansión Spencer", "Castillo Dimitrescu", "Residencia Baker"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cómo se craftea un pico de madera en Minecraft?",
     "options": ["2 palos y 3 de maderas", "1 palo y 1 de madera",
       "5 palos", "3 palos y 3 maderas"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cuál es el color principal de Kirby?",
     "options": ["Amarillo", "Rojo", "Azul", "Rosa"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cuál es el nickname del protagonista de Persona 5?",
     "options": ["Joker", "El bromas", "Guasón", "Balatro"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cómo se llama la mascota principal de Digimon?",
     "options": ["Agumon", "Gabumon", "Patamon", "Gatomon"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cómo se llama el caballo de The Witcher 3?",
     "options": ["Sardinilla", "Santiago", "Rocinante", "Caballo"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿Con qué personaje juegas en Hades?",
     "options": ["Hades", "Ares", "Zagreo", "Tanatos"],
-    "correctIndex": 2
+    "correctIndex": 2,
+    "difficulty": "facil"
   },
   {
     "text": "¿A qué mafia estás matando en Hotline Miami?",
     "options": ["Rusos", "Italianos", "Latinos", "Americanos"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "facil"
   },
   {
     "text": "¿A qué juego pertenece este mapa?",
     "options": ["Fortnite Capitulo 1 Temporada 7",
       "The Legend of Zelda", "Club Penguin", "Fire Emblem Three Houses"],
     "correctIndex": 2,
-    "image": "Mapa_Club_Penguin.png"
+    "image": "Mapa_Club_Penguin.png",
+    "difficulty": "facil"
   },
   {
     "text": "¿Qué colores usan los portales de Portal?",
     "options": ["Azul y Rojo", "Amarillo y Verde", "Rojo y Amarillo", "Azul y Naranja"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "facil"
   },
   {
     "text": "¿Cuántas pantallas tiene cada zona de Sonic: The Hedgehog?",
     "options": ["1", "2", "3", "4"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "facil"
   },
   {
     "text": "¿Qué dios traiciona a Kratos en God of War?",
     "options": ["Hera","Zeus", "Ares", "Hades"],
-    "correctIndex": 2
+    "correctIndex": 2,
+    "difficulty": "facil"
   },
 
 
@@ -105,70 +123,83 @@
   {
     "text": "¿Cómo se llama el país cuya frontera debes vigilar en “Papers, Please”?",
     "options": ["Rusia","Arstotzka", "Valheim", "Londres"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "intermedio"
   },
   {
   "text": "¿Qué zona de Dark Souls se debe drenar para poder avanzar en la historia principal?",
   "options": ["Viejo Londo","Archivos del Duque", "Nuevo Londo", "Ciudad Infestada"],
-  "correctIndex": 2
+  "correctIndex": 2,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Qué personaje hace este ruido cuando le hacen daño?",
     "options": ["Personaje Roblox","Samus", "Kratos", "Link"],
     "correctIndex": 3,
-    "audio": "adult_link_falls.mp3"
+    "audio": "adult_link_falls.mp3",
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Cómo se llama el Joker de Balatro?",
     "options": ["Casimiro","Jimbo", "Joker", "Balatro"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Cómo se llama el antiguo gobernador del reino de Hollow Knight?",
     "options": ["Rey Pálido","Nosk", "Zote, el todopoderoso", "Luren, el Vigilante"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Cómo se llama la ciudad de Disco Elysium?",
     "options": ["París","Revachol", "Claire de Lune", "Valladolid"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Qué personaje de Super Smash Bros Ultimate se ha tragado Kirby?",
     "options": ["Joker","Corrin", "Simon", "Megaman"],
     "correctIndex": 2,
-    "imagen": "Kirby-Simon-SSBU.png"
+    "image": "Kirby-Simon-SSBU.png",
+    "difficulty": "intermedio"
   },
   {
     "text": "¿En qué juego de Mario Kart se incluyó este elemento?",
     "options": ["Mario Kart 7","Mario Kart Wii", "Mario Kart Double Dash", "Mario Kart 8"],
     "correctIndex": 0,
-    "imagen": "Parapente_Mario_Kart.png"
+    "image": "Parapente_Mario_Kart.png",
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Cómo se llama la principal antagonista y rival de Hornet en el juego Hollow Knight: Silksong?",
     "options": ["Shakra","Lace", "Sherma", "Lemm"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿A partir de qué minuto puedes rendirte en el League of Legends?",
     "options": ["20","10", "15", "Desde el principio"],
-    "correctIndex": 2
+    "correctIndex": 2,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Qué articulación le impide a los guardias de Skyrim ser aventureros?",
     "options": ["Tobillo","Hombro", "Rodilla", "Muñeca"],
-    "correctIndex": 2
+    "correctIndex": 2,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Qué famoso protagoniza el aclamado juego “¡Qué pasa, Neng!”?",
     "options": ["Neng","Rafa Nadal", "Isabel Allende", "Edu Soto"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "intermedio"
   },
   {
     "text": "¿Cuál es el enemigo más famoso del videojuego Bioshock?",
     "options": ["Little Sister","Big Daddy", "Handyman", "Birdman"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "intermedio"
   },
 
 
@@ -181,61 +212,73 @@
   {
     "text": "¿Cuántos biomas hay en Minecraft (contando todas las dimensiones)?",
     "options": ["59","64", "53", "68"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Cuántos Waddle Dees hay que rescatar en total en Kirby y la tierra olvidada?",
     "options": ["200","333", "250", "300"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "dificil"
   },
   {
     "text": "¿En qué generación de pokémon ganó Ash Ketchup la liga pokemon en el anime?",
-    "options": ["4º generación","2º generación", "9º generación", ",7º generación"],
-    "correctIndex": 3
+    "options": ["4º generación","2º generación", "9º generación", "7º generación"],
+    "correctIndex": 3,
+    "difficulty": "dificil"
   },
   {
     "text": "Dentro del universo del videojuego de Terraria, ¿qué tipo de pilar celeste corresponde a la clase de Mago?",
     "options": ["Polvo Estelar","Nebulosa", "Solar", "Vórtice"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Cuál es el monstruo final de rango bajo de Monster Hunter 4 Ultimate?",
     "options": ["Gogmazios","Shagaru Magala", "Zinogre", "Gore Magala"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Cómo se llama el país inventado donde ocurren los acontecimientos de Far Cry 4?",
     "options": ["Keray","Mumbai", "Chennai", "Kyrat"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Qué objeto del juego The Binding of Isaac: Repentace otorga la mejor mejora de daño?",
     "options": ["The Pact","Red Stew", "Blood of Martyr", "The Sausage"],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Qué aclamada saga tiene un DLC en DeadCells?",
     "options": ["Halo","Metroid", "Castlevania", "Minecraft"],
-    "correctIndex": 2
+    "correctIndex": 2,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Cómo se llama el amigo fotógrafo de Madeline en el juego Celeste?",
     "options": ["Theo","Mr. Oshiro", "Gabriel", "Jim"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Qué isla debes investigar en Singularity?",
     "options": ["Katorga-12","Katacroquis-45", "Katan-2", "Katana-0"],
-    "correctIndex": 0
+    "correctIndex": 0,
+    "difficulty": "dificil"
   },
   {
     "text": "¿De qué va el Outer Wilds?",
     "options": ["Naranjas","Espacio", "Naves", "No te lo puedo decir, pero juégalo"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "dificil"
   },
   {
     "text": "¿Cuál es el principal problema conocido durante el desarrollo del conocido videojuego WEGOJIM?",
     "options": ["Corrutinas de 500 líneas","Arte", "Problemas de dificultad", "Todas son correctas"],
-    "correctIndex": 3
+    "correctIndex": 3,
+    "difficulty": "dificil"
   }
 ]

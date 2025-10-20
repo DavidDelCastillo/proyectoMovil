@@ -33,8 +33,9 @@ class MainMenu : ComponentActivity(){
     }
 
     private fun StartButtonPressed(){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SelectDifficultyActivity::class.java)
         startActivity(intent)
+
     }
 
     private fun ScoresButtonPressed(){

@@ -21,7 +21,8 @@ data class Question(
     val options: List<String>,
     val correctIndex: Int,
     val image: String? = null,
-    val audio: String? = null
+    val audio: String? = null,
+    val difficulty: String
 )
 
 
@@ -87,8 +88,13 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun loadQuiz() {
+        val selectedDifficulty = intent.getStringExtra("difficulty") ?: "facil"
+
         questions = try {
-            loadQuestionsFromJson().shuffled().take(5)
+            loadQuestionsFromJson()
+                .filter { it.difficulty.equals(selectedDifficulty, ignoreCase = true) }
+                .shuffled()
+                .take(5)
         } catch (e: Exception) {
             e.printStackTrace()
             listOf()
@@ -101,9 +107,10 @@ class MainActivity : ComponentActivity() {
             showQuestion()
             btnNext.text = "Siguiente"
         } else {
-            questionText.text = "No se pudieron cargar las preguntas."
+            questionText.text = "No se pudieron cargar las preguntas de dificultad '$selectedDifficulty'."
         }
     }
+
 
     private fun showQuestion() {
         val q = questions[currentQuestionIndex]
