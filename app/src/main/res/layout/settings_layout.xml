@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/MainMenuRoot"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/MainTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="350px"
-        android:text="VIDEOGAME TITLE" />
+    android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/StartBtn"
+        android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="JUGAR" />
+        android:text="REINICIAR PUNTUACIONES" />
 
     <Button
-        android:id="@+id/ScoresBtn"
+        android:id="@+id/audioBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PUNTUACIONES" />
+        android:text="COMPROBAR SONIDO" />
 
     <Button
-        android:id="@+id/SettingsBtn"
+        android:id="@+id/creditsBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="AJUSTES" />
+        android:text="CRÉDITOS"
+        tools:layout_marginTop="300px" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="VOLVER"
+        tools:layout_marginTop="500px" />
 </LinearLayout>

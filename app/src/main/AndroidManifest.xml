@@ -27,6 +27,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ScoresActivity" />
         <activity android:name=".SelectDifficultyActivity" />
+        <activity android:name=".CreditsActivity" />
     </application>
 
 </manifest>

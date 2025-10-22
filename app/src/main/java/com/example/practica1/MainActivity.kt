@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var buttons: List<Button>
     private lateinit var btnNext: Button
 
+    private var playerScore: Int = 0
 
     private var currentQuestionIndex = 0
     private var questions: List<Question> = listOf()
@@ -165,6 +166,10 @@ class MainActivity : ComponentActivity() {
         val q = questions[currentQuestionIndex]
         answered = true
 
+        if (selectedIndex == q.correctIndex){
+            playerScore += 10 //puntuacion del jugador
+        }
+
         buttons.forEachIndexed { index, button ->
             button.isEnabled = false
             if (index == q.correctIndex) {
@@ -186,7 +191,7 @@ class MainActivity : ComponentActivity() {
 
     private fun finishQuiz() {
         questionText.text = "¡Has terminado el quiz! 🎉"
-        questionNumber.text = ""
+        questionNumber.text = "Puntuacion:" + playerScore.toString()
         buttons.forEach {
             it.text = ""
             it.isEnabled = false
