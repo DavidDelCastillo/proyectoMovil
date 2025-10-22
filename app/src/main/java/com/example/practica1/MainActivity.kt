@@ -23,7 +23,6 @@ data class Question(
     val difficulty: String
 )
 
-
 class MainActivity : ComponentActivity() {
 
     private fun loadQuestionsFromJson(): List<Question> {
@@ -44,18 +43,19 @@ class MainActivity : ComponentActivity() {
     private lateinit var btnNext: Button
 
     private var playerScore: Int = 0
-
     private var currentQuestionIndex = 0
     private var questions: List<Question> = listOf()
     private var answered = false
     private var quizFinished = false
+
+    // NUEVO → Guardar dificultad para registrar puntuación
+    private var selectedDifficulty: String = "facil"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         questionImage = findViewById(R.id.questionImage)
-
         questionText = findViewById(R.id.questionText)
         questionNumber = findViewById(R.id.questionNumber)
         timerLabel = findViewById(R.id.timerLabel)
@@ -90,7 +90,8 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun loadQuiz() {
-        val selectedDifficulty = intent.getStringExtra("difficulty") ?: "facil"
+        // MODIFICADO → Guardamos dificultad como propiedad
+        selectedDifficulty = intent.getStringExtra("difficulty") ?: "facil"
 
         questions = try {
             loadQuestionsFromJson()
@@ -104,11 +105,12 @@ class MainActivity : ComponentActivity() {
 
         currentQuestionIndex = 0
         quizFinished = false
+        playerScore = 0
 
         chronometer = QuizTimer { seconds ->
             val minutes = seconds / 60
             val secs = seconds % 60
-            timerLabel.text = "${String.format("%02d:%02d", minutes, secs)}"
+            timerLabel.text = String.format("%02d:%02d", minutes, secs)
         }
 
         if (questions.isNotEmpty()) {
@@ -119,7 +121,6 @@ class MainActivity : ComponentActivity() {
             questionText.text = "No se pudieron cargar las preguntas de dificultad '$selectedDifficulty'."
         }
     }
-
 
     private fun showQuestion() {
         val q = questions[currentQuestionIndex]
@@ -174,8 +175,8 @@ class MainActivity : ComponentActivity() {
         val q = questions[currentQuestionIndex]
         answered = true
 
-        if (selectedIndex == q.correctIndex){
-            playerScore += 10 //puntuacion del jugador
+        if (selectedIndex == q.correctIndex) {
+            playerScore += 10 // puntuación del jugador
         }
 
         buttons.forEachIndexed { index, button ->
@@ -200,13 +201,31 @@ class MainActivity : ComponentActivity() {
     private fun finishQuiz() {
         chronometer?.stop()
         questionText.text = "¡Has terminado el quiz! 🎉"
-        var totalScore = playerScore - (chronometer?.getElapsedTime() ?: 0)
-        questionNumber.text = "Puntuacion:" + totalScore.toString()
+
+        val totalScore = playerScore - (chronometer?.getElapsedTime() ?: 0)
+        questionNumber.text = "Puntuación: $totalScore"
+
+        // --- GUARDAR PUNTUACIÓN MÁXIMA POR DIFICULTAD ---
+        val prefs = getSharedPreferences("Scores", MODE_PRIVATE)
+        val key = when (selectedDifficulty.lowercase()) {
+            "facil" -> "max_easy"
+            "media" -> "max_medium"
+            "dificil" -> "max_hard"
+            else -> "max_easy"
+        }
+
+        val currentMax = prefs.getInt(key, 0)
+        if (totalScore > currentMax) {
+            prefs.edit().putInt(key, totalScore).apply()
+        }
+
+        // --- LIMPIAR PANTALLA ---
         buttons.forEach {
             it.text = ""
             it.isEnabled = false
             it.setBackgroundColor(Color.WHITE)
         }
+
         btnNext.text = "Volver al menú"
         quizFinished = true
         stopAudio()
