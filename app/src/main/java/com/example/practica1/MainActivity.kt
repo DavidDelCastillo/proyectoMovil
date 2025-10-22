@@ -3,11 +3,9 @@ package com.example.practica1
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import android.view.KeyEvent
 import android.widget.Button
 import android.widget.TextView
 import android.graphics.Color
-import android.transition.Scene
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.InputStreamReader
@@ -35,11 +33,13 @@ class MainActivity : ComponentActivity() {
         return Gson().fromJson(reader, questionType)
     }
 
+    private var chronometer: QuizTimer? = null
     private lateinit var questionImage: ImageView
     private var mediaPlayer: MediaPlayer? = null
 
     private lateinit var questionText: TextView
     private lateinit var questionNumber: TextView
+    private lateinit var timerLabel: TextView
     private lateinit var buttons: List<Button>
     private lateinit var btnNext: Button
 
@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
 
         questionText = findViewById(R.id.questionText)
         questionNumber = findViewById(R.id.questionNumber)
+        timerLabel = findViewById(R.id.timerLabel)
 
         btnNext = findViewById(R.id.btn0)
         val btn1: Button = findViewById(R.id.btn1)
@@ -104,7 +105,14 @@ class MainActivity : ComponentActivity() {
         currentQuestionIndex = 0
         quizFinished = false
 
+        chronometer = QuizTimer { seconds ->
+            val minutes = seconds / 60
+            val secs = seconds % 60
+            timerLabel.text = "${String.format("%02d:%02d", minutes, secs)}"
+        }
+
         if (questions.isNotEmpty()) {
+            chronometer?.start()
             showQuestion()
             btnNext.text = "Siguiente"
         } else {
@@ -190,8 +198,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun finishQuiz() {
+        chronometer?.stop()
         questionText.text = "¡Has terminado el quiz! 🎉"
-        questionNumber.text = "Puntuacion:" + playerScore.toString()
+        var totalScore = playerScore - (chronometer?.getElapsedTime() ?: 0)
+        questionNumber.text = "Puntuacion:" + totalScore.toString()
         buttons.forEach {
             it.text = ""
             it.isEnabled = false
