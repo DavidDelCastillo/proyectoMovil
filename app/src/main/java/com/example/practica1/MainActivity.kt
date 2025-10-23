@@ -13,6 +13,9 @@ import android.media.MediaPlayer
 import android.widget.ImageView
 import android.graphics.BitmapFactory
 import android.view.View
+import android.util.Log
+import java.text.Normalizer
+import java.util.Locale
 
 data class Question(
     val text: String,
@@ -22,7 +25,6 @@ data class Question(
     val audio: String? = null,
     val difficulty: String
 )
-
 
 class MainActivity : ComponentActivity() {
 
@@ -44,18 +46,19 @@ class MainActivity : ComponentActivity() {
     private lateinit var btnNext: Button
 
     private var playerScore: Int = 0
-
     private var currentQuestionIndex = 0
     private var questions: List<Question> = listOf()
     private var answered = false
     private var quizFinished = false
+
+    // NUEVO → Guardar dificultad para registrar puntuación
+    private var selectedDifficulty: String = "facil"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         questionImage = findViewById(R.id.questionImage)
-
         questionText = findViewById(R.id.questionText)
         questionNumber = findViewById(R.id.questionNumber)
         timerLabel = findViewById(R.id.timerLabel)
@@ -90,7 +93,8 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun loadQuiz() {
-        val selectedDifficulty = intent.getStringExtra("difficulty") ?: "facil"
+        // MODIFICADO → Guardamos dificultad como propiedad
+        selectedDifficulty = intent.getStringExtra("difficulty") ?: "facil"
 
         questions = try {
             loadQuestionsFromJson()
@@ -104,11 +108,12 @@ class MainActivity : ComponentActivity() {
 
         currentQuestionIndex = 0
         quizFinished = false
+        playerScore = 0
 
         chronometer = QuizTimer { seconds ->
             val minutes = seconds / 60
             val secs = seconds % 60
-            timerLabel.text = "${String.format("%02d:%02d", minutes, secs)}"
+            timerLabel.text = String.format("%02d:%02d", minutes, secs)
         }
 
         if (questions.isNotEmpty()) {
@@ -119,7 +124,6 @@ class MainActivity : ComponentActivity() {
             questionText.text = "No se pudieron cargar las preguntas de dificultad '$selectedDifficulty'."
         }
     }
-
 
     private fun showQuestion() {
         val q = questions[currentQuestionIndex]
@@ -174,8 +178,8 @@ class MainActivity : ComponentActivity() {
         val q = questions[currentQuestionIndex]
         answered = true
 
-        if (selectedIndex == q.correctIndex){
-            playerScore += 10 //puntuacion del jugador
+        if (selectedIndex == q.correctIndex) {
+            playerScore += 10 // puntuación del jugador
         }
 
         buttons.forEachIndexed { index, button ->
@@ -197,22 +201,67 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
     private fun finishQuiz() {
         chronometer?.stop()
         questionText.text = "¡Has terminado el quiz! 🎉"
-        var totalScore = playerScore - (chronometer?.getElapsedTime() ?: 0)
-        questionNumber.text = "Puntuacion:" + totalScore.toString()
+
+        // Si tu chronometer devuelve milisegundos o segundos ajusta aquí:
+        val elapsed = chronometer?.getElapsedTime() ?: 0
+        val totalScore = (playerScore - elapsed).coerceAtLeast(0) // evita negativos
+        questionNumber.text = "Puntuación: $totalScore"
+
+        // DEBUG: ver qué dificultad tenemos realmente aquí
+        Log.d("MainActivity", "selectedDifficulty (raw) = '$selectedDifficulty'")
+
+        // Normaliza la dificultad: quita tildes, espacios, a minúsculas
+        fun normalize(s: String): String {
+            val noDiacritics = Normalizer.normalize(s, Normalizer.Form.NFD)
+                .replace("\\p{InCombiningDiacriticalMarks}+".toRegex(), "")
+            return noDiacritics.trim().lowercase(Locale.getDefault())
+        }
+
+        val diffNorm = normalize(selectedDifficulty)
+        Log.d("MainActivity", "selectedDifficulty (normalized) = '$diffNorm'")
+
+        // Mapea a la clave correcta
+        val key = when (diffNorm) {
+            "facil", "fácil", "easy" -> "max_easy"
+            "media", "medio", "med", "normal", "intermedia", "intermedio", "medium" -> "max_medium"
+            "dificil", "dificíl", "difícil", "hard" -> "max_hard"
+            else -> {
+                Log.w("MainActivity", "Dificultad desconocida ('$selectedDifficulty') -> usando 'max_easy' por defecto")
+                "max_easy"
+            }
+        }
+
+
+        Log.d("MainActivity", "Guardar en SharedPreferences: file='Scores', key='$key', score=$totalScore")
+
+        // Usa el archivo de prefs que tú has decidido ("Scores")
+        val prefs = getSharedPreferences("Scores", MODE_PRIVATE)
+        val currentMax = prefs.getInt(key, 0)
+        if (totalScore > currentMax) {
+            prefs.edit().putInt(key, totalScore).apply()
+            Log.d("MainActivity", "Nuevo récord guardado: $totalScore para $key (antes $currentMax)")
+        } else {
+            Log.d("MainActivity", "No supera el récord actual ($currentMax) para $key")
+        }
+
+        // LIMPIEZA UI
         buttons.forEach {
             it.text = ""
             it.isEnabled = false
             it.setBackgroundColor(Color.WHITE)
         }
+
         btnNext.text = "Volver al menú"
         quizFinished = true
         stopAudio()
         questionImage.setImageDrawable(null)
         questionImage.visibility = View.GONE
     }
+
 
     private fun restartQuiz() {
         loadQuiz()
