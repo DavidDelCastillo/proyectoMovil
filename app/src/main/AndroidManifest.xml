@@ -25,7 +25,10 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".ScoresActivity" />
+        <activity
+    	android:name=".ScoresActivity"
+       android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
         <activity android:name=".SelectDifficultyActivity" />
         <activity android:name=".CreditsActivity" />
     </application>

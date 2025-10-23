@@ -13,6 +13,9 @@ import android.media.MediaPlayer
 import android.widget.ImageView
 import android.graphics.BitmapFactory
 import android.view.View
+import android.util.Log
+import java.text.Normalizer
+import java.util.Locale
 
 data class Question(
     val text: String,
@@ -198,28 +201,54 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
     private fun finishQuiz() {
         chronometer?.stop()
         questionText.text = "¡Has terminado el quiz! 🎉"
 
-        val totalScore = playerScore - (chronometer?.getElapsedTime() ?: 0)
+        // Si tu chronometer devuelve milisegundos o segundos ajusta aquí:
+        val elapsed = chronometer?.getElapsedTime() ?: 0
+        val totalScore = (playerScore - elapsed).coerceAtLeast(0) // evita negativos
         questionNumber.text = "Puntuación: $totalScore"
 
-        // --- GUARDAR PUNTUACIÓN MÁXIMA POR DIFICULTAD ---
-        val prefs = getSharedPreferences("Scores", MODE_PRIVATE)
-        val key = when (selectedDifficulty.lowercase()) {
-            "facil" -> "max_easy"
-            "media" -> "max_medium"
-            "dificil" -> "max_hard"
-            else -> "max_easy"
+        // DEBUG: ver qué dificultad tenemos realmente aquí
+        Log.d("MainActivity", "selectedDifficulty (raw) = '$selectedDifficulty'")
+
+        // Normaliza la dificultad: quita tildes, espacios, a minúsculas
+        fun normalize(s: String): String {
+            val noDiacritics = Normalizer.normalize(s, Normalizer.Form.NFD)
+                .replace("\\p{InCombiningDiacriticalMarks}+".toRegex(), "")
+            return noDiacritics.trim().lowercase(Locale.getDefault())
         }
 
+        val diffNorm = normalize(selectedDifficulty)
+        Log.d("MainActivity", "selectedDifficulty (normalized) = '$diffNorm'")
+
+        // Mapea a la clave correcta
+        val key = when (diffNorm) {
+            "facil", "fácil", "easy" -> "max_easy"
+            "media", "medio", "med", "normal", "intermedia", "intermedio", "medium" -> "max_medium"
+            "dificil", "dificíl", "difícil", "hard" -> "max_hard"
+            else -> {
+                Log.w("MainActivity", "Dificultad desconocida ('$selectedDifficulty') -> usando 'max_easy' por defecto")
+                "max_easy"
+            }
+        }
+
+
+        Log.d("MainActivity", "Guardar en SharedPreferences: file='Scores', key='$key', score=$totalScore")
+
+        // Usa el archivo de prefs que tú has decidido ("Scores")
+        val prefs = getSharedPreferences("Scores", MODE_PRIVATE)
         val currentMax = prefs.getInt(key, 0)
         if (totalScore > currentMax) {
             prefs.edit().putInt(key, totalScore).apply()
+            Log.d("MainActivity", "Nuevo récord guardado: $totalScore para $key (antes $currentMax)")
+        } else {
+            Log.d("MainActivity", "No supera el récord actual ($currentMax) para $key")
         }
 
-        // --- LIMPIAR PANTALLA ---
+        // LIMPIEZA UI
         buttons.forEach {
             it.text = ""
             it.isEnabled = false
@@ -232,6 +261,7 @@ class MainActivity : ComponentActivity() {
         questionImage.setImageDrawable(null)
         questionImage.visibility = View.GONE
     }
+
 
     private fun restartQuiz() {
         loadQuiz()

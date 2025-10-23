@@ -5,37 +5,34 @@ import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.Switch
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.edit
 
 class SettingsActivity : AppCompatActivity() {
 
-    private var mediaPlayer: MediaPlayer? = null
-
+    private lateinit var audioManager: AudioManager
+    private lateinit var volumeSeekBar: SeekBar
     private lateinit var backbtn: Button
     private lateinit var audioBtn: Button
     private lateinit var creditsBtn: Button
-    private lateinit var volumeSeekBar: SeekBar
-    private lateinit var darkModeSwitch: Switch
-
-    private lateinit var audioManager: AudioManager
+    private lateinit var resetScoresBtn: Button
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_layout)
 
-        // Botones existentes
+        // Botones
         backbtn = findViewById(R.id.backBtn)
         audioBtn = findViewById(R.id.audioBtn)
         creditsBtn = findViewById(R.id.creditsBtn)
+        resetScoresBtn = findViewById(R.id.button3)
 
         backbtn.setOnClickListener { BackButtonPressed() }
         audioBtn.setOnClickListener { AudioButtonPressed() }
         creditsBtn.setOnClickListener { CreditsButtonPressed() }
+        resetScoresBtn.setOnClickListener { ResetScoresButtonPressed() }
 
         // Configurar control de volumen
         volumeSeekBar = findViewById(R.id.volumeSeekBar)
@@ -51,19 +48,9 @@ class SettingsActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
-
-        // Configurar modo oscuro
-        darkModeSwitch = findViewById(R.id.darkModeSwitch)
-        val prefs = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        val isDarkMode = prefs.getBoolean("dark_mode", false)
-        darkModeSwitch.isChecked = isDarkMode
-
-        darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            val mode = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-            AppCompatDelegate.setDefaultNightMode(mode)
-            prefs.edit { putBoolean("dark_mode", isChecked) }
-        }
     }
+
+    // --- FUNCIONES DE BOTONES ---
 
     private fun BackButtonPressed() {
         AudioStop()
@@ -87,6 +74,19 @@ class SettingsActivity : AppCompatActivity() {
     private fun CreditsButtonPressed() {
         val intent = Intent(this, CreditsActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun ResetScoresButtonPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Reiniciar puntuaciones")
+        builder.setMessage("¿Estás seguro de que quieres borrar todos los récords? Esta acción no se puede deshacer.")
+        builder.setPositiveButton("Sí") { _, _ ->
+            val prefs = getSharedPreferences("Scores", Context.MODE_PRIVATE)
+            prefs.edit().clear().apply()
+            Toast.makeText(this, "Puntuaciones reiniciadas correctamente.", Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("Cancelar", null)
+        builder.show()
     }
 
     private fun AudioStop() {
