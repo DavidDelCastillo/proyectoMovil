@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Practica1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Practica1" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- referencia a colores definidos en colors.xml -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
@@ -9,6 +9,17 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
-        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorBackground</item>
+    </style>
+    <style name="Theme.Practica1.Oscuro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- referencia a colores definidos en colors.xml -->
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryVariant">@color/darkColorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/darkColorOnPrimary</item>
+
+        <item name="colorSecondary">@color/darkColorSecondary</item>
+        <item name="colorOnSecondary">@color/darkColorOnSecondary</item>
+
+        <item name="colorOnBackground">@color/darkColorBackground</item>
     </style>
 </resources>

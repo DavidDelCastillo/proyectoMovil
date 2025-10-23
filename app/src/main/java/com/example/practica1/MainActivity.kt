@@ -14,6 +14,8 @@ import android.widget.ImageView
 import android.graphics.BitmapFactory
 import android.view.View
 import android.util.Log
+import android.util.TypedValue
+import androidx.core.view.isVisible
 import java.text.Normalizer
 import java.util.Locale
 
@@ -26,7 +28,7 @@ data class Question(
     val difficulty: String
 )
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
 
     private fun loadQuestionsFromJson(): List<Question> {
         val inputStream = assets.open("questions.json")
@@ -51,6 +53,8 @@ class MainActivity : ComponentActivity() {
     private var answered = false
     private var quizFinished = false
 
+    private var colorPrimary = 0
+
     // NUEVO → Guardar dificultad para registrar puntuación
     private var selectedDifficulty: String = "facil"
 
@@ -69,6 +73,13 @@ class MainActivity : ComponentActivity() {
         val btn3: Button = findViewById(R.id.btn3)
         val btn4: Button = findViewById(R.id.btn4)
         buttons = listOf(btn1, btn2, btn3, btn4)
+
+
+        val typedValue = TypedValue()
+        val theme = btn1.context.theme
+
+        theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)
+        colorPrimary = typedValue.data
 
         buttons.forEachIndexed { index, button ->
             button.setOnClickListener {
@@ -163,7 +174,8 @@ class MainActivity : ComponentActivity() {
 
         buttons.forEachIndexed { index, button ->
             button.text = q.options[index]
-            button.setBackgroundColor(Color.parseColor("#E0E0E0"))
+
+            button.setBackgroundColor(colorPrimary)
             button.isEnabled = true
         }
     }
@@ -179,7 +191,7 @@ class MainActivity : ComponentActivity() {
         answered = true
 
         if (selectedIndex == q.correctIndex) {
-            playerScore += 10 // puntuación del jugador
+            playerScore += 100 // puntuación del jugador
         }
 
         buttons.forEachIndexed { index, button ->
@@ -206,15 +218,11 @@ class MainActivity : ComponentActivity() {
         chronometer?.stop()
         questionText.text = "¡Has terminado el quiz! 🎉"
 
-        // Si tu chronometer devuelve milisegundos o segundos ajusta aquí:
         val elapsed = chronometer?.getElapsedTime() ?: 0
-        val totalScore = (playerScore - elapsed).coerceAtLeast(0) // evita negativos
+        val totalScore = (playerScore - elapsed).coerceAtLeast(0)
         questionNumber.text = "Puntuación: $totalScore"
 
-        // DEBUG: ver qué dificultad tenemos realmente aquí
-        Log.d("MainActivity", "selectedDifficulty (raw) = '$selectedDifficulty'")
 
-        // Normaliza la dificultad: quita tildes, espacios, a minúsculas
         fun normalize(s: String): String {
             val noDiacritics = Normalizer.normalize(s, Normalizer.Form.NFD)
                 .replace("\\p{InCombiningDiacriticalMarks}+".toRegex(), "")
@@ -252,7 +260,7 @@ class MainActivity : ComponentActivity() {
         buttons.forEach {
             it.text = ""
             it.isEnabled = false
-            it.setBackgroundColor(Color.WHITE)
+            it.isVisible = false
         }
 
         btnNext.text = "Volver al menú"

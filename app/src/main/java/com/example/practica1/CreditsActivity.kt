@@ -3,9 +3,8 @@ package com.example.practica1
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.ComponentActivity
 
-class CreditsActivity : ComponentActivity() {
+class CreditsActivity : BaseActivity() {
 
     private lateinit var backbtn : Button;
 

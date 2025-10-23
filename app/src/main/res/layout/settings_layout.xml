@@ -2,39 +2,49 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorOnBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="?attr/colorOnBackground">
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="REINICIAR PUNTUACIONES" />
+            android:text="REINICIAR PUNTUACIONES"
+            android:textColor="?attr/colorOnPrimary"
+            android:background="?attr/colorPrimary" />
 
         <Button
             android:id="@+id/audioBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="COMPROBAR SONIDO" />
+            android:text="COMPROBAR SONIDO"
+            android:textColor="?attr/colorOnPrimary"
+            android:background="?attr/colorPrimary" />
 
         <Button
             android:id="@+id/creditsBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CRÉDITOS"
-            tools:layout_marginTop="300px" />
+            tools:layout_marginTop="300px"
+            android:textColor="?attr/colorOnPrimary"
+            android:background="?attr/colorPrimary" />
 
         <Button
             android:id="@+id/backBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="VOLVER"
-            tools:layout_marginTop="500px" />
+            tools:layout_marginTop="500px"
+            android:textColor="?attr/colorOnPrimary"
+            android:background="?attr/colorPrimary" />
 
         <!-- Separador visual -->
         <View

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryVariant">#3700B3</color>
-    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#B580FF</color>
+    <color name="colorPrimaryVariant">#6D50B1</color>
+    <color name="colorOnPrimary">#000000</color>
 
-    <color name="colorSecondary">#03DAC6</color>
+    <color name="colorSecondary">#BABABA</color>
     <color name="colorOnSecondary">#000000</color>
 
     <!-- Fondo claro -->
@@ -13,4 +13,17 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <!-- Modo Oscuro -->
+    <color name="darkColorPrimary">#6200EE</color>
+    <color name="darkColorPrimaryVariant">#3700B3</color>
+    <color name="darkColorOnPrimary">#FFFFFF</color>
+
+    <color name="darkColorSecondary">#242424</color>
+    <color name="darkColorOnSecondary">#FFFFFF</color>
+
+    <!-- Fondo claro -->
+    <color name="darkColorBackground">#212121</color>
+    <color name="darkColorSurface">#212121</color>
+
 </resources>

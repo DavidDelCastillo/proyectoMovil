@@ -12,7 +12,7 @@
         android:layout_marginBottom="200px"
         android:gravity="center"
         android:text="EQUIPO DE DESARROLLO"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="48sp"
         android:textStyle="bold"
         tools:layout_marginTop="100px" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Alberto Garrote Salamanca"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="24sp"
         android:textStyle="italic" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="David Del Castillo Enríquez"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="24sp"
         android:textStyle="italic" />
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Ismael Esteban Liberal"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="24sp"
         android:textStyle="italic" />
 
@@ -53,9 +53,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Xabier López Aguilera"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="24sp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:background="?attr/colorOnBackground" />
 
     <TextView
         android:id="@+id/textView6"
@@ -63,7 +64,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Anatoli Nichei"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="24sp"
         android:textStyle="italic" />
 
@@ -71,6 +72,8 @@
         android:id="@+id/creditsBackBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:background="?attr/colorPrimary"
         android:text="VOLVER"
         tools:layout_marginTop="500px" />
 </LinearLayout>
