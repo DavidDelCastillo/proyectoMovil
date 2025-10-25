@@ -289,7 +289,7 @@
     "difficulty": "dificil"
   },
   {
-    "text": "¿A qué canción de Splatoon pertenece este fragm?",
+    "text": "¿A qué canción de Splatoon pertenece este fragmento?",
     "options": ["Fly octo fly","Anarchy rainbow", "Bomb Rush Blush", "Ink or Sink"],
     "correctIndex": 0,
     "audio": "octo_expansion_sc.mp3",
