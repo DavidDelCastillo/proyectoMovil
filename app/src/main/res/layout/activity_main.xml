@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainMenuRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="?attr/colorOnBackground">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/in2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+<LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
@@ -8,7 +27,6 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:textAlignment="center"
-    android:background="?attr/colorOnBackground"
     >
 
     <TextView
@@ -17,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="00:00"
         android:textAlignment="center"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="#1FFFFF"
         android:textSize="34sp"
         android:textStyle="bold" />
 
@@ -25,7 +43,7 @@
         android:id="@+id/questionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="#1FFFFF"
         android:layout_marginBottom="8dp"
         android:text="Pregunta 1"
         android:textSize="16sp"
@@ -45,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="#1FFFFF"
         android:gravity="center"
         android:text="¿Cuál es la capital de Francia?"
         android:textSize="20sp"
@@ -98,3 +116,4 @@
         android:text="Siguiente" />
 
 </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
