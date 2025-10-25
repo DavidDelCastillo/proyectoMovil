@@ -282,7 +282,7 @@
     "difficulty": "dificil"
   },
   {
-    "text": "¿A qué personaje de super smash Bros ultimate pertenece este fragmento de silueta?",
+    "text": "¿A qué personaje de Super Smash Bros Ultimate pertenece este fragmento de silueta?",
     "options": ["Daraen","Ike", "Sheik", "Simon"],
     "correctIndex": 2,
     "image":"SSMU_Personaje.png",
