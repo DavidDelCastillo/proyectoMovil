@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/in2"
+        android:src="?attr/backgroundImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:text="Puntuaciones"
             android:textStyle="bold"
             android:textSize="40sp"
-            android:textColor="#1FFFFF" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +77,7 @@
             android:text="Selecciona una dificultad"
 
             android:textAlignment="center"
-            android:textColor="#1FFF4F"
+            android:textColor="?attr/colorOnPrimary"
             android:padding="24dp"
             android:textSize="18sp" />
 

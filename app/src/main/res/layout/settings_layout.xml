@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/in2"
+        android:src="?attr/backgroundImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,14 +50,14 @@
             android:layout_marginBottom="8dp"
             android:text="Volumen"
             android:textStyle="bold"
-            android:textColor="#1FFFFF" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <SeekBar
             android:id="@+id/volumeSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progressBackgroundTint="#1FFF4F"
-            android:thumbTint="#1FFF4F"
+            android:progressBackgroundTint="?attr/colorPrimary"
+            android:thumbTint="?attr/colorPrimary"
             android:layout_marginBottom="70dp"/>
 
         <Button

@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/in2"
+        android:src="?attr/backgroundImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="EQUIPO DE DESARROLLO"
-            android:textColor="#1FFFFF"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="48sp"
             android:textStyle="bold"
             android:layout_marginBottom="60dp"/>
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Alberto Garrote Salamanca"
-            android:textColor="#1FFF4F"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="24sp"
             android:textStyle="italic" />
 
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="David Del Castillo Enríquez"
-            android:textColor="#1FFF4F"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="24sp"
             android:textStyle="italic" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Ismael Esteban Liberal"
-            android:textColor="#1FFF4F"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="24sp"
             android:textStyle="italic" />
 
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Xabier López Aguilera"
-            android:textColor="#1FFF4F"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="24sp"
             android:textStyle="italic"/>
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Anatoli Nichei"
-            android:textColor="#1FFF4F"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="24sp"
             android:textStyle="italic"
             android:layout_marginBottom="80dp"/>
