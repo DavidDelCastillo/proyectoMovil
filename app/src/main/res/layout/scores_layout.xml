@@ -1,73 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainMenuRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MainActivity"
     android:background="?attr/colorOnBackground">
 
-    <TextView
-        android:id="@+id/scoresTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Puntuaciones"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="?attr/colorOnPrimary"
-        android:layout_marginBottom="16dp" />
-
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/in2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:id="@+id/scoresTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntuaciones"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:textColor="#1FFFFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="50dp">
+
+            <Button
+                android:id="@+id/easyBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
+                android:text="Fácil" />
+
+            <Button
+                android:id="@+id/mediumBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
+                android:text="Media" />
+
+            <Button
+                android:id="@+id/hardBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
+                android:text="Difícil" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecciona una dificultad"
+
+            android:textAlignment="center"
+            android:textColor="#1FFF4F"
+            android:padding="24dp"
+            android:textSize="18sp" />
 
         <Button
-            android:id="@+id/easyBtn"
-            android:layout_width="0dp"
+            android:id="@+id/backBtn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:text="Volver"
+            android:layout_marginTop="24dp"
             android:textColor="?attr/colorOnPrimary"
-            android:background="?attr/colorPrimary"
-            android:text="Fácil" />
+            android:background="?attr/colorPrimary" />
 
-        <Button
-            android:id="@+id/mediumBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="?attr/colorOnPrimary"
-            android:background="?attr/colorPrimary"
-            android:text="Media" />
-
-        <Button
-            android:id="@+id/hardBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="?attr/colorOnPrimary"
-            android:background="?attr/colorPrimary"
-            android:text="Difícil" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/scoreText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Selecciona una dificultad"
-        android:textAlignment="center"
-        android:textColor="?attr/colorOnPrimary"
-        android:padding="24dp"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver"
-        android:layout_marginTop="24dp"
-        android:textColor="?attr/colorOnPrimary"
-        android:background="?attr/colorPrimary" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
